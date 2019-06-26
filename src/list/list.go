@@ -15,6 +15,39 @@ type List struct {
 	len  int
 }
 
+// DeleteLast deletes Last Element
+func (l *List) DeleteLast() {
+	l.Delete(l.len)
+}
+
+// Delete node at position
+func (l *List) Delete(pos int) {
+
+	//Out of bounds
+	if pos < 0 || pos > l.len {
+		return
+	}
+	prev := l.previousNode(pos)
+
+	//Remove head
+	if pos == 1 {
+		prev = l.head
+		l.head = l.head.next
+		prev = new(node)
+		l.len--
+		return
+	}
+	toRemove := prev.next
+	prev.next = toRemove.next
+	toRemove = new(node)
+	l.len--
+}
+
+// Length of LL
+func (l List) Length() int {
+	return l.len
+}
+
 // Insert a value at the end
 func (l *List) Insert(value int) {
 	if l.head == nil {
@@ -26,7 +59,7 @@ func (l *List) Insert(value int) {
 		return
 	}
 
-	l.insertAfter(value, l.head)
+	l.insertAfter(value, l.tail)
 }
 
 // inserts node after a node
@@ -35,6 +68,9 @@ func (l *List) insertAfter(val int, ptr *node) {
 	temp.val = val
 	temp.next = ptr.next
 	ptr.next = &temp
+	if l.tail == ptr {
+		l.tail = &temp
+	}
 	l.len++
 }
 
@@ -47,20 +83,26 @@ func (l *List) InsertAt(newVAl int, pos int) {
 	}
 	//if insertion at starting
 	if pos == 1 {
-		l.insertAfter(newVAl, l.head)
+		var temp node
+		temp.val = newVAl
+		temp.next = l.head
+		l.head = &temp
 		return
 	}
 
-	l.insertAfter(newVAl, l.previousnode(pos))
+	l.insertAfter(newVAl, l.previousNode(pos))
 }
 
 // returns previous node to this position
-func (l List) previousnode(pos int) *node {
+func (l List) previousNode(pos int) *node {
 	ptr := l.head
 
-	if pos < 1 {
-		fmt.Println("Error. Previous node parameter cannot be < 1 \n Returning list head.")
+	if pos <= 1 {
 		return l.head
+	}
+
+	if pos > l.len {
+		return l.tail
 	}
 
 	for i := 1; i < pos-1; i++ {
@@ -70,13 +112,40 @@ func (l List) previousnode(pos int) *node {
 	return ptr
 }
 
-// Print the linked list
-func (l List) Print() {
+// GetArray returns the list as a slice
+func (l List) GetArray() []int {
 	var p = l.head
+	var arr []int
+
 	for p != nil {
-		fmt.Print(p.val, " ")
+		arr = append(arr, p.val)
 		p = p.next
 	}
 	fmt.Println(" ")
-	return
+	return arr
+}
+
+// GetVal returns value for given position
+func (l List) GetVal(pos int) int {
+	return l.getNode(pos).val
+}
+
+// GetNode returns node
+func (l List) getNode(pos int) *node {
+	ptr := l.head
+
+	if pos < 1 {
+		fmt.Println("Error. Position cannot be less than 1")
+		return l.head
+	}
+
+	if pos > l.len {
+		return l.tail
+	}
+
+	for i := 1; i < pos; i++ {
+		ptr = ptr.next
+	}
+
+	return ptr
 }
