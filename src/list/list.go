@@ -24,7 +24,7 @@ func (l *List) DeleteLast() {
 func (l *List) Delete(pos int) {
 
 	//Out of bounds
-	if pos < 0 || pos > l.len {
+	if pos <= 0 || pos > l.len {
 		return
 	}
 	prev := l.previousNode(pos)
@@ -135,7 +135,6 @@ func (l List) getNode(pos int) *node {
 	ptr := l.head
 
 	if pos < 1 {
-		fmt.Println("Error. Position cannot be less than 1")
 		return l.head
 	}
 
