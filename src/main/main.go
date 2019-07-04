@@ -12,8 +12,8 @@ func main() {
 	l.Insert(2)
 	l.InsertAt(1, 1)
 	fmt.Println(l.GetArray())
-	fmt.Println()
-
+	l.DeleteVal(2)
+	fmt.Println(l.GetArray())
 	var s stack.Stack
 	s.Push(1)
 	fmt.Println("Top: ", s.Top())
@@ -49,4 +49,5 @@ func main() {
 	t.Root = &n2
 	fmt.Println(t.Inorder())
 	fmt.Println(t.BFS())
+
 }

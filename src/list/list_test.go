@@ -20,7 +20,7 @@ func TestInsertOne(t *testing.T) {
 	//test step
 	l.Insert(input)
 
-	output := l.GetVal(l.Length())
+	output := l.GetAt(l.Length())
 	if output != expected {
 		t.Error("\nTest Failed: {} inserted, {} expected, recieved: {}", input, expected, output)
 	}
@@ -30,9 +30,8 @@ func TestDeleteOne(t *testing.T) {
 	l := initList()
 	input := l.Length()
 	expected := input - 1
-
 	//test step
-	l.Delete(l.Length())
+	l.DeleteAt(l.Length())
 
 	output := l.Length()
 	if output != input-1 {
@@ -46,7 +45,7 @@ func TestOutOfBoundsDelete(t *testing.T) {
 	input := l.len
 	expected := input
 	//test step
-	l.Delete(-1)
+	l.DeleteAt(-1)
 
 	if output := l.Length(); output != expected {
 		t.Error("Test Failed: {} inputted, {} expected, recieved: {}", input, expected, output)
@@ -60,7 +59,7 @@ func TestDeleteListWithOne(t *testing.T) {
 	input := l.Length()
 	expected := l.Length() - 1
 	//test step
-	l.Delete(l.Length())
+	l.DeleteAt(l.Length())
 	if output := l.Length(); output != expected {
 		t.Error("Test Failed: {} inputted, {} expected, recieved: {}", input, expected, output)
 	}
@@ -87,7 +86,7 @@ func TestInsertAtEmpty(t *testing.T) {
 
 	l.InsertAt(input, 1)
 
-	output := l.GetVal(1)
+	output := l.GetAt(1)
 
 	if output != expected {
 		t.Error("Test Failed: {} inputted, {} expected, recieved: {}", input, expected, output)
@@ -101,7 +100,7 @@ func TestInsertAtStarting(t *testing.T) {
 
 	l.InsertAt(input, 1)
 
-	output := l.GetVal(1)
+	output := l.GetAt(1)
 
 	if output != expected {
 		t.Error("Test Failed: {} inputted, {} expected, recieved: {}", input, expected, output)
@@ -115,7 +114,7 @@ func TestInsertAtMiddle(t *testing.T) {
 
 	l.InsertAt(input, 2)
 
-	output := l.GetVal(2)
+	output := l.GetAt(2)
 
 	if output != expected {
 		t.Error("Test Failed: {} inputted, {} expected, recieved: {}", input, expected, output)
