@@ -174,3 +174,35 @@ func TestDeleteLast(t *testing.T) {
 	}
 
 }
+
+func TestDeleteVal(t *testing.T) {
+	l := initList()
+	input := l.Length()
+	expected := input - 1
+	l.DeleteVal(2)
+	if output := l.Length(); output != expected {
+		t.Error("Test Failed: {} inputted, {} expected, recieved: {}", input, expected, output)
+	}
+
+}
+
+func TestSearch(t *testing.T) {
+	l := initList()
+	input := l.Length()
+	expected := input
+	last := l.GetAt(input)
+	if output := l.Search(last); output != expected {
+		t.Error("Test Failed: {} inputted, {} expected, recieved: {}", input, expected, output)
+	}
+
+}
+
+func TestSearchDNE(t *testing.T) {
+	l := initList()
+	input := 4
+	expected := -1
+	if output := l.Search(4); output != expected {
+		t.Error("Test Failed: {} inputted, {} expected, recieved: {}", input, expected, output)
+	}
+
+}

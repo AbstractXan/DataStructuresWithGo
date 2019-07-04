@@ -126,6 +126,11 @@ func (l *List) DeleteVal(val int) {
 	l.DeleteAt(pos)
 }
 
+// GetAt returns node value at given position
+func (l List) GetAt(pos int) int {
+	return l.getNode(pos).val
+}
+
 // --- Additional functions --- //
 
 // Length of LL
@@ -162,11 +167,6 @@ func (l List) GetArray() []int {
 		p = p.next
 	}
 	return arr
-}
-
-// GetAt returns node value at given position
-func (l List) GetAt(pos int) int {
-	return l.getNode(pos).val
 }
 
 // DeleteLast deletes Last Element
