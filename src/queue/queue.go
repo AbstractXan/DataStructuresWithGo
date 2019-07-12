@@ -22,10 +22,10 @@ func (q *Queue) Dequeue() int {
 
 // Front returns value at front
 func (q *Queue) Front() int {
-	return q.list.GetVal(1)
+	return q.list.GetAt(1)
 }
 
 // Back returns value at back
 func (q *Queue) Back() int {
-	return q.list.GetVal(q.list.Length())
+	return q.list.GetAt(q.list.Length())
 }

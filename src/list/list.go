@@ -54,12 +54,8 @@ func (l *List) insertAfter(val int, ptr *node) {
 func (l List) getNode(pos int) *node {
 	ptr := l.head
 
-	if pos < 1 {
-		return l.head
-	}
-
-	if pos > l.len {
-		return l.tail
+	if pos < 1 || pos > l.len {
+		return nil
 	}
 
 	for i := 1; i < pos; i++ {
@@ -104,19 +100,16 @@ func (l *List) DeleteAt(pos int) {
 	if pos <= 0 || pos > l.len {
 		return
 	}
-	prev := l.previousNode(pos)
 
 	//Remove head
 	if pos == 1 {
-		prev = l.head
 		l.head = l.head.next
-		prev = new(node)
 		l.len--
 		return
 	}
-	toRemove := prev.next
-	prev.next = toRemove.next
-	toRemove = new(node)
+
+	prev := l.previousNode(pos)
+	prev.next = prev.next.next
 	l.len--
 }
 
@@ -128,7 +121,11 @@ func (l *List) DeleteVal(val int) {
 
 // GetAt returns node value at given position
 func (l List) GetAt(pos int) int {
-	return l.getNode(pos).val
+	node := l.getNode(pos)
+	if node == nil {
+		return -1
+	}
+	return node.val
 }
 
 // --- Additional functions --- //
@@ -151,6 +148,7 @@ func (l *List) InsertAt(newVAl int, pos int) {
 		temp.val = newVAl
 		temp.next = l.head
 		l.head = &temp
+		l.len++
 		return
 	}
 

@@ -9,8 +9,9 @@ import "fmt"
 func main() {
 
 	var l list.List
+	fmt.Println(l.GetAt(1))
 	l.Insert(2)
-	l.InsertAt(1, 1)
+	l.InsertAt(1, 1) //Additional functions
 	fmt.Println(l.GetArray())
 	l.DeleteVal(2)
 	fmt.Println(l.GetArray())

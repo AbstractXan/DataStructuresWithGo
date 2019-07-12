@@ -15,7 +15,7 @@ func (stack *Stack) Push(newVal int) {
 
 // Top returns value at top
 func (stack *Stack) Top() int {
-	return stack.list.GetVal(stack.list.Length())
+	return stack.list.GetAt(stack.list.Length())
 }
 
 // Pop returns value at top and removes it from the stack
