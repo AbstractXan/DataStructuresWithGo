@@ -164,17 +164,6 @@ func TestPreviousNodeGreaterThanScope(t *testing.T) {
 	}
 }
 
-func TestDeleteLast(t *testing.T) {
-	l := initList()
-	input := l.Length()
-	expected := input - 1
-	l.DeleteLast()
-	if output := l.Length(); output != expected {
-		t.Error("Test Failed: {} inputted, {} expected, recieved: {}", input, expected, output)
-	}
-
-}
-
 func TestDeleteVal(t *testing.T) {
 	l := initList()
 	input := l.Length()

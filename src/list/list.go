@@ -166,8 +166,3 @@ func (l List) GetArray() []int {
 	}
 	return arr
 }
-
-// DeleteLast deletes Last Element
-func (l *List) DeleteLast() {
-	l.DeleteAt(l.len)
-}

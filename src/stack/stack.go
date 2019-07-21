@@ -21,7 +21,7 @@ func (stack *Stack) Top() int {
 // Pop returns value at top and removes it from the stack
 func (stack *Stack) Pop() int {
 	popped := stack.Top()
-	stack.list.DeleteLast()
+	stack.list.DeleteAt(stack.list.Length())
 	return popped
 }
 
