@@ -4,6 +4,7 @@ import "list"
 import "stack"
 import "queue"
 import "tree"
+import "bst"
 import "fmt"
 
 func main() {
@@ -15,6 +16,7 @@ func main() {
 	fmt.Println(l.GetArray())
 	l.DeleteVal(2)
 	fmt.Println(l.GetArray())
+
 	var s stack.Stack
 	s.Push(1)
 	fmt.Println("Top: ", s.Top())
@@ -32,9 +34,7 @@ func main() {
 	fmt.Println("Back: ", q.Back())
 	q.Dequeue()
 	fmt.Println("Back: ", q.Back())
-
 	q.Dequeue()
-
 	q.Dequeue()
 	fmt.Println("Back: ", q.Back())
 
@@ -50,5 +50,11 @@ func main() {
 	t.Root = &n2
 	fmt.Println(t.Inorder())
 	fmt.Println(t.BFS())
+
+	var st bst.BST
+	st.Insert(1)
+	st.Insert(2)
+	st.Insert(-1)
+	fmt.Println(st.Search(-1))
 
 }

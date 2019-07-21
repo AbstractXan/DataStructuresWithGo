@@ -16,7 +16,7 @@ func (q *Queue) Enqueue(value int) {
 // Dequeue dequeues a value
 func (q *Queue) Dequeue() int {
 	dequeued := q.Back()
-	q.list.DeleteLast()
+	q.list.DeleteAt(q.list.Length())
 	return dequeued
 }
 
