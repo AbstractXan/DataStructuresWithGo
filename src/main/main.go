@@ -6,6 +6,7 @@ import "queue"
 import "tree"
 import "bst"
 import "fmt"
+import "heap"
 
 func main() {
 
@@ -56,5 +57,13 @@ func main() {
 	st.Insert(2)
 	st.Insert(-1)
 	fmt.Println(st.Search(-1))
+	st.Delete(2)
 
+	fmt.Println(st.Search(2))
+	st.Delete(3)
+
+	var h heap.Heap
+	h.Insert(1)
+	h.Insert(2)
+	h.Print()
 }

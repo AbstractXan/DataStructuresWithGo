@@ -1,6 +1,6 @@
 package bst
 
-// import "fmt"
+import "fmt"
 
 // Node of binary Tree
 type Node struct {
@@ -86,4 +86,54 @@ func (b *BST) Insert(val int) {
 // Search value
 func (b *BST) Search(val int) bool {
 	return b.root.search(val)
+}
+
+func (node *Node) find(val int) (*Node, bool) {
+
+	// if empty
+	if node == nil {
+		var tmp Node
+		return &tmp, false
+	}
+
+	// // if equal, return true
+	if val == node.Val {
+		return node, true
+	}
+
+	// if less, search on the left subtree
+	if val < node.Val {
+		if node.Left != nil && val == node.Left.Val {
+			return node.Left, true
+		}
+		return node.Left.find(val)
+	}
+
+	// if greater, search on the right subtree
+	if node.Right != nil && val == node.Right.Val {
+		return node.Right, true
+	}
+	return node.Right.find(val)
+}
+
+// Delete value
+func (b *BST) Delete(val int) {
+
+	if b.root != nil {
+		return
+	}
+
+	// Find iteratively through the tree
+	// Obtain pointer to node to delete
+	node, flag := b.root.find(val)
+	if !flag {
+		return
+	}
+
+	// if node is leaf
+	if node.Left == nil && node.Right == nil {
+		fmt.Println("Pointer set to null", node, node.Val)
+		node = nil
+	}
+
 }
